@@ -19,6 +19,10 @@
                     <label for="status" class="form-label">Status:</label>
                     <input type="text" class="form-control" id="status" name="status" required>
                 </div>
+                <div class="mb-3">
+                    <label for="photoUrls" class="form-label">Photo URLs (Prosze dodawac nowe linki po ,):</label><br>
+                    <textarea id="photoUrls" class="form-control" name="photoUrls" rows="4" cols="50"></textarea><br>
+                </div>
                 <button type="submit" class="btn btn-warning">Edytuj</button>
             </form>
         </div>

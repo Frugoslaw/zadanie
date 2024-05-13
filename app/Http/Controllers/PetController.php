@@ -23,25 +23,26 @@ class PetController extends Controller
             'id' => 'required',
             'name' => 'required',
             'status' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Dodajemy walidację dla obrazu
+            'photoUrls' => 'required',
         ]);
 
-        if ($request->hasFile('image')) {
-            $imageName = $request->file('image')->getClientOriginalName();
-            $request->file('image')->storeAs('images', $imageName);
+        $photoUrls = explode(',', $validatedData['photoUrls']);
 
-            $data = [
-                'id' => $validatedData['id'],
-                'name' => $validatedData['name'],
-                'status' => $validatedData['status'],
-                'photoUrls' => [$imageName],
-            ];
+        $photoUrls = array_filter($photoUrls);
 
-            Http::post('https://petstore.swagger.io/v2/pet', $data);
+        $data = [
+            'id' => $validatedData['id'],
+            'name' => $validatedData['name'],
+            'status' => $validatedData['status'],
+            'photoUrls' => $photoUrls,
+        ];
 
-            return redirect()->route('showPet', $data['id'])->with('success', "Pet added!");
-        }
+        Http::post('https://petstore.swagger.io/v2/pet', $data);
+
+        return redirect()->route('showPet', $data['id'])->with('success', "Pet added!");
     }
+
+
 
     public function searchPetById(Request $request)
     {
@@ -83,21 +84,26 @@ class PetController extends Controller
             'id' => 'required',
             'name' => 'required',
             'status' => 'required',
+            'photoUrls' => 'required',
         ]);
 
-        $petId = $request->id;
+        // Podzielanie wprowadzonego ciągu URL-i na tablicę
+        $photoUrls = explode(',', $validatedData['photoUrls']);
+
+        $photoUrls = array_filter($photoUrls);
 
         $response = Http::put('https://petstore.swagger.io/v2/pet/', [
             'id' => $validatedData['id'],
             'name' => $validatedData['name'],
             'status' => $validatedData['status'],
+            'photoUrls' => $photoUrls,
         ]);
 
         if ($response->failed()) {
             return redirect()->back()->with('error', 'Failed to update pet');
         }
 
-        return redirect()->route('showPet', $petId)->with('success', 'Pet updated successfully');
+        return redirect()->route('showPet', $validatedData['id'])->with('success', 'Pet updated successfully');
     }
 
     public function destroy($id)

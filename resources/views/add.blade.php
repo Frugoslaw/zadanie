@@ -19,8 +19,8 @@
                     <input type="text" class="form-control" id="status" name="status" required>
                 </div>
                 <div class="mb-3">
-                    <label for="image" class="form-label">Image:</label>
-                    <input type="file" class="form-control" id="image" name="image" accept="image/*">
+                    <label for="photoUrls" class="form-label">Photo URLs (Prosze dodawac nowe linki po ,):</label><br>
+                    <textarea id="photoUrls" class="form-control" name="photoUrls" rows="4" cols="50"></textarea><br>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
