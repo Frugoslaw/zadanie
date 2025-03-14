@@ -55,12 +55,12 @@ npm run dev
 <h2>🌍 Routing</h2>
 <pre><code>
 Route::prefix('pets')->name('pets.')->group(function () {
-    Route::get('/', [PetController::class, 'create'])->name('create');
-    Route::post('/', [PetController::class, 'store'])->name('store');
-    Route::get('/{id}', [PetController::class, 'show'])->name('show');
-    Route::get('/edit/{id}', [PetController::class, 'edit'])->name('edit');
-    Route::put('/update', [PetController::class, 'update'])->name('update');
-    Route::delete('/{id}', [PetController::class, 'destroy'])->name('destroy');
+    Route::get('/', [PetController::class, 'create'])->name('createPet');
+    Route::post('/', [PetController::class, 'store'])->name('storePet');
+    Route::get('/{id}', [PetController::class, 'show'])->name('showPet');
+    Route::get('/edit/{id}', [PetController::class, 'edit'])->name('editPet');
+    Route::put('/update', [PetController::class, 'update'])->name('updatePet');
+    Route::delete('/{id}', [PetController::class, 'destroy'])->name('destroyPet');
 });
         </code></pre>
 
@@ -72,25 +72,11 @@ Route::prefix('pets')->name('pets.')->group(function () {
     <li><strong>show.blade.php</strong> - szczegóły zwierzaka</li>
 </ul>
 
-<h2>🚀 Przykładowe użycie</h2>
-<p>Dodanie nowego zwierzaka:</p>
-<pre><code>
-POST /pets
-Content-Type: application/json
-{
-    "name": "Rex",
-    "status": "available",
-    "photoUrls": ["https://example.com/rex.jpg"],
-    "category_name": "Pies",
-    "tags": "duży, energiczny"
-}
-        </code></pre>
-
 <h2>📜 Licencja</h2>
 <p>Projekt dostępny na licencji MIT.</p>
 
 <h2>👨‍💻 Autor</h2>
-<p>Twórca: <strong>Twoje Imię</strong> | <a href="https://github.com/twoj-github" target="_blank">GitHub</a></p>
+<p>Twórca: <strong>Michał Gora</strong></p>
 </div>
 
 
