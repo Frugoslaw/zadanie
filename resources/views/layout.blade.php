@@ -36,10 +36,6 @@
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                             Add pet
                         </a>
-                        <a class="nav-link" href="{{ route('editPet') }}">
-                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                            Edit pet
-                        </a>
                     </div>
                 </div>
             </nav>
