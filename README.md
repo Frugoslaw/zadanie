@@ -1,4 +1,5 @@
 <html>
+
 <head>
     <style>
         body {
@@ -7,6 +8,7 @@
             line-height: 1.6;
             background-color: #f4f4f4;
         }
+
         .container {
             max-width: 900px;
             margin: auto;
@@ -15,14 +17,18 @@
             border-radius: 8px;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
         }
-        h1, h2 {
+
+        h1,
+        h2 {
             color: #333;
         }
+
         code {
             background: #eee;
             padding: 2px 5px;
             border-radius: 4px;
         }
+
         pre {
             background: #222;
             color: #fff;
@@ -30,16 +36,19 @@
             border-radius: 4px;
             overflow-x: auto;
         }
+
         ul {
             list-style: square;
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <h1>🐾 PetStore Laravel API Integration</h1>
-        <p><strong>PetStore Laravel API Integration</strong> to aplikacja umożliwiająca zarządzanie zwierzętami poprzez integrację z <a href="https://petstore.swagger.io/" target="_blank">Swagger PetStore API</a>. Umożliwia dodawanie, edytowanie, usuwanie oraz wyświetlanie zwierzaków.</p>
-
+        <p><strong>PetStore Laravel API Integration</strong> to aplikacja umożliwiająca zarządzanie zwierzętami poprzez
+            integrację z <a href="https://petstore.swagger.io/" target="_blank">Swagger PetStore API</a>. Umożliwia
+            dodawanie, edytowanie, usuwanie oraz wyświetlanie zwierzaków.</p>
         <h2>📌 Instalacja</h2>
         <p>Uruchom poniższe polecenia, aby skonfigurować projekt:</p>
         <pre><code>git clone https://github.com/twoj-repo/petstore-laravel.git
@@ -69,7 +78,8 @@ php artisan serve</code></pre>
 
         <h2>💡 SOLID & Refaktoryzacja</h2>
         <ul>
-            <li><strong>Single Responsibility Principle (SRP)</strong>: Walidacja, obsługa API i kontrolery są oddzielone.</li>
+            <li><strong>Single Responsibility Principle (SRP)</strong>: Walidacja, obsługa API i kontrolery są
+                oddzielone.</li>
             <li><strong>Open/Closed Principle (OCP)</strong>: Można łatwo dodać nowe metody API.</li>
             <li><strong>Dependency Inversion Principle (DIP)</strong>: Wstrzykiwanie `PetService` w kontrolerze.</li>
         </ul>
@@ -124,4 +134,5 @@ Content-Type: application/json
         <p>Twórca: <strong>Twoje Imię</strong> | <a href="https://github.com/twoj-github" target="_blank">GitHub</a></p>
     </div>
 </body>
+
 </html>
