@@ -74,7 +74,7 @@
 
                         <div class="text-center mt-4">
                             <a href="{{ route('index') }}" class="btn btn-primary">🔙 Powrót</a>
-                            <form action="{{ route('deletePet', $pet['id']) }}" method="POST" class="d-inline">
+                            <form action="{{ route('deletePet', ['id' => $pet['id']]) }}" method="POST" class="d-inline">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger"

@@ -1,66 +1,127 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2 {
+            color: #333;
+        }
+        code {
+            background: #eee;
+            padding: 2px 5px;
+            border-radius: 4px;
+        }
+        pre {
+            background: #222;
+            color: #fff;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+        ul {
+            list-style: square;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🐾 PetStore Laravel API Integration</h1>
+        <p><strong>PetStore Laravel API Integration</strong> to aplikacja umożliwiająca zarządzanie zwierzętami poprzez integrację z <a href="https://petstore.swagger.io/" target="_blank">Swagger PetStore API</a>. Umożliwia dodawanie, edytowanie, usuwanie oraz wyświetlanie zwierzaków.</p>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+        <h2>📌 Instalacja</h2>
+        <p>Uruchom poniższe polecenia, aby skonfigurować projekt:</p>
+        <pre><code>git clone https://github.com/twoj-repo/petstore-laravel.git
+cd petstore-laravel
+composer install
+cp .env.example .env
+php artisan key:generate
+php artisan serve</code></pre>
 
-## About Laravel
+        <h2>🛠 Wymagania</h2>
+        <ul>
+            <li>PHP 8.0+</li>
+            <li>Laravel 9+</li>
+            <li>Composer</li>
+            <li>Internet (do komunikacji z API)</li>
+        </ul>
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+        <h2>📂 Struktura projektu</h2>
+        <ul>
+            <li><strong>app/Http/Controllers/PetController.php</strong> - zarządzanie żądaniami</li>
+            <li><strong>app/Services/PetService.php</strong> - logika API</li>
+            <li><strong>app/Http/Requests/PetRequest.php</strong> - walidacja</li>
+            <li><strong>app/Constants/PetConstants.php</strong> - stałe (URL API, statusy)</li>
+            <li><strong>resources/views/</strong> - widoki</li>
+            <li><strong>routes/web.php</strong> - routing aplikacji</li>
+        </ul>
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+        <h2>💡 SOLID & Refaktoryzacja</h2>
+        <ul>
+            <li><strong>Single Responsibility Principle (SRP)</strong>: Walidacja, obsługa API i kontrolery są oddzielone.</li>
+            <li><strong>Open/Closed Principle (OCP)</strong>: Można łatwo dodać nowe metody API.</li>
+            <li><strong>Dependency Inversion Principle (DIP)</strong>: Wstrzykiwanie `PetService` w kontrolerze.</li>
+        </ul>
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+        <h2>🔄 API Endpoints</h2>
+        <ul>
+            <li><code>GET /pets</code> - lista zwierząt</li>
+            <li><code>POST /pets</code> - dodanie zwierzaka</li>
+            <li><code>GET /pets/{id}</code> - szczegóły zwierzaka</li>
+            <li><code>PUT /pets/update</code> - edycja zwierzaka</li>
+            <li><code>DELETE /pets/{id}</code> - usunięcie zwierzaka</li>
+        </ul>
 
-## Learning Laravel
+        <h2>🌍 Routing</h2>
+        <pre><code>
+Route::prefix('pets')->name('pets.')->group(function () {
+    Route::get('/', [PetController::class, 'create'])->name('create');
+    Route::post('/', [PetController::class, 'store'])->name('store');
+    Route::get('/{id}', [PetController::class, 'show'])->name('show');
+    Route::get('/edit/{id}', [PetController::class, 'edit'])->name('edit');
+    Route::put('/update', [PetController::class, 'update'])->name('update');
+    Route::delete('/{id}', [PetController::class, 'destroy'])->name('destroy');
+});
+        </code></pre>
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+        <h2>🎨 Widoki</h2>
+        <ul>
+            <li><strong>index.blade.php</strong> - lista zwierząt</li>
+            <li><strong>add.blade.php</strong> - dodawanie nowego zwierzaka</li>
+            <li><strong>edit.blade.php</strong> - edycja zwierzaka</li>
+            <li><strong>show.blade.php</strong> - szczegóły zwierzaka</li>
+        </ul>
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+        <h2>🚀 Przykładowe użycie</h2>
+        <p>Dodanie nowego zwierzaka:</p>
+        <pre><code>
+POST /pets
+Content-Type: application/json
+{
+    "name": "Rex",
+    "status": "available",
+    "photoUrls": ["https://example.com/rex.jpg"],
+    "category_name": "Pies",
+    "tags": "duży, energiczny"
+}
+        </code></pre>
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+        <h2>📜 Licencja</h2>
+        <p>Projekt dostępny na licencji MIT.</p>
 
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+        <h2>👨‍💻 Autor</h2>
+        <p>Twórca: <strong>Twoje Imię</strong> | <a href="https://github.com/twoj-github" target="_blank">GitHub</a></p>
+    </div>
+</body>
+</html>

@@ -25,9 +25,9 @@
                     <div class="mb-3">
                         <label for="status" class="form-label fw-bold">📋 Status:</label>
                         <select class="form-select" id="status" name="status" required>
-                            <option value="available">Dostępny</option>
-                            <option value="pending">Oczekuje</option>
-                            <option value="sold">Sprzedany</option>
+                            @foreach ($statuses as $key => $label)
+                                <option value="{{ $key }}">{{ $label }}</option>
+                            @endforeach
                         </select>
                     </div>
 

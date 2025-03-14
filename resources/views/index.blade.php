@@ -18,9 +18,9 @@
                     <label for="filterStatus" class="form-label fw-bold">📌 Filtruj po statusie:</label>
                     <select id="filterStatus" class="form-select">
                         <option value="">Wszystkie</option>
-                        <option value="available">Dostępny</option>
-                        <option value="pending">Oczekuje</option>
-                        <option value="sold">Sprzedany</option>
+                        <option value="Dostępny">Dostępny</option>
+                        <option value="Oczekuje">Oczekuje</option>
+                        <option value="Sprzedany">Sprzedany</option>
                     </select>
                 </div>
             </div>
@@ -34,6 +34,7 @@
                             <th>Status</th>
                             <th>Zdjęcia</th>
                             <th>Pokaż</th>
+                            <th>Edytuj</th>
                             <th>Usuń</th>
                         </tr>
                     </thead>
@@ -62,16 +63,16 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <a href="{{ route('showPet', $pet['id']) }}" class="btn btn-info btn-sm">
+                                    <a href="{{ route('showPet', ['id' => $pet['id']]) }}" class="btn btn-info btn-sm">
                                         👁️ Pokaż
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="{{ route('editPet', $pet['id']) }}" class="btn btn-warning btn-sm">✏️
+                                    <a href="{{ route('editPet', ['id' => $pet['id']]) }}" class="btn btn-warning btn-sm">✏️
                                         Edytuj</a>
                                 </td>
                                 <td>
-                                    <form action="{{ route('deletePet', $pet['id']) }}" method="POST">
+                                    <form action="{{ route('deletePet', ['id' => $pet['id']]) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger btn-sm"
@@ -87,8 +88,6 @@
             </div>
         </div>
     </div>
-
-    {{-- DataTables + filtrowanie po statusie --}}
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>

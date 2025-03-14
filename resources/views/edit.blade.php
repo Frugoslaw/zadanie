@@ -27,11 +27,12 @@
                     <div class="mb-3">
                         <label for="status" class="form-label fw-bold">📋 Status:</label>
                         <select class="form-select" id="status" name="status" required>
-                            <option value="available" {{ $pet['status'] == 'available' ? 'selected' : '' }}>Dostępny
-                            </option>
-                            <option value="pending" {{ $pet['status'] == 'pending' ? 'selected' : '' }}>Oczekuje</option>
-                            <option value="sold" {{ $pet['status'] == 'sold' ? 'selected' : '' }}>Sprzedany</option>
+                            @foreach ($statuses as $key => $label)
+                                <option value="{{ $key }}" {{ $pet['status'] == $key ? 'selected' : '' }}>
+                                    {{ $label }}</option>
+                            @endforeach
                         </select>
+
                     </div>
 
                     {{-- Linki do zdjęć --}}
